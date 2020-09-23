@@ -1,0 +1,27 @@
+/*
+ * Copyright 2018 The Chromium Authors. All rights reserved.
+ * Use of this source code is governed by a BSD-style license that can be
+ * found in the LICENSE file.
+ */
+
+ .console-prompt .CodeMirror {
+	padding: 3px 0 1px 0;
+}
+
+.console-prompt .CodeMirror-line {
+	padding-top: 0;
+}
+
+.console-prompt .CodeMirror-lines {
+	padding-top: 0;
+}
+
+.console-error-level {
+	background-color: #fff0f0;
+	color: #f00;
+}
+
+.console-message-wrapper.console-error-level:last-of-type {
+	border-bottom-color: #ffd6d6;
+	border-top-color: #ffd6d6;
+}

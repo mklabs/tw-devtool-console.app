@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>TW Modding Console</title>
+
+	<!-- Stylesheets -->
+	<link rel="stylesheet" href="static/vendors/photon/css/photon.css">
+	<link rel="stylesheet" href="static/vendors/codemirror/lib/codemirror.css">
+
+	<link rel="stylesheet" href="static/css/index.css">
+	<link rel="stylesheet" href="static/css/console-chromium.css">
+	<link rel="stylesheet" href="static/css/console.css">
+	<link rel="stylesheet" href="static/css/settings.css">
+
+
+	<script src="static/vendors/debug/debug.js" defer></script>
+	<script src="lib/app.js" defer></script>
+</head>
+
+<body>
+	<div class="window" x-data="Window()">
+		<div class="window-content">
+			<div class="pane-group">
+				<div class="pane-mini sidebar">
+					<nav class="nav-group">
+						<a class="nav-group-item" x-bind:title="TABS_CONSOLE"
+							x-bind:class="{ active: $store.window.tabSelected === TABS_CONSOLE}" @click="selectTab(TABS_CONSOLE)">
+							<span class="icon icon-rocket"></span>
+						</a>
+
+						<!-- <a class="nav-group-item" x-bind:title="TABS_LOGS"
+							x-bind:class="{ active: $store.window.tabSelected === TABS_LOGS}" @click="selectTab(TABS_LOGS)">
+							<span class="icon icon-doc-text-inv"></span>
+						</a> -->
+
+						<a class="nav-group-item" x-bind:title="TABS_SETTINGS"
+							x-bind:class="{ active: $store.window.tabSelected === TABS_SETTINGS}" @click="selectTab(TABS_SETTINGS)">
+							<span class="icon icon-tools"></span>
+						</a>
+					</nav>
+				</div>
+
+				<div class="pane tab-console" x-show="$store.window.tabSelected === TABS_CONSOLE"  style="display: none;">
+
+					<div class="console-pane-group" x-data="Console()" x-init="init()">
+						<header class="toolbar toolbar-header console-header">
+							<div class="toolbar-actions">
+								<div class="btn-group">
+									<a class="console-clear-button" title="Clear console (Ctrl+L)" @click="clear">
+										<span class="icon icon-block"></span>
+									</a>
+								</div>
+	
+								<!-- <input class="form-control console-filter" type="text" placeholder="Filter" x-on:input.debounce="filter" x-ref="filter"> -->
+
+								<div class="toolbar-input toolbar-item" 
+									style="flex-grow: 0.2; flex-shrink: 1;"
+									x-ref="toolbarInput" 
+									x-bind:class="{ focused: textPromptFocused, 'toolbar-input-empty': $refs.filter.innerText.trim().length === 0 }">
+
+									<div class="text-prompt-root">
+										<div class="toolbar-input-prompt text-prompt"
+											aria-hidden="true"
+											role="textbox"
+											x-ref="filter"
+											x-on:focus="textPromptFocused = true"
+											x-on:focusout="textPromptFocused = false"
+											x-on:input.debounce="filter"
+											contenteditable="true"
+											placeholder="Filter..."
+											data-placeholder="Filter"
+											aria-placeholder="Filter"></div>
+									</div>
+
+									<a class="toolbar-input-clear-button" @click="clearFilter">
+										<span class="icon icon-block"></span>
+									</a>
+
+								</div>
+							</div>
+						</header>
+
+						<div class="console-pane console-messages" x-ref="messages" x-bind:data-changed="$store.console.changeTimestamp">
+
+							<template x-for="message in $store.console.messages" :key="message">
+								<div class="console-message-wrapper"
+									x-show="message.content.includes(filterValue)"
+									x-bind:class="{ 'console-error-level': message.type === 'user-command-result-error'}">
+									<div class="console-message">
+										<span class="icon command-result-icon"
+											x-bind:class="{ 'icon-left-open': message.type === 'user-command-result', 'icon-right-open': message.type === 'user-command'}">
+										</span>
+
+										<template x-if="message.type === 'user-command-result'">
+											<pre class="source-code cm-s-default" 
+												x-html="message.html"
+												x-bind:data-timestamp="message.timestamp"
+												class="user-command-result">
+											</pre>
+										</template>
+
+										<template x-if="message.type === 'user-command'">
+											<pre class="source-code cm-s-default" 
+												x-html="message.html"
+												x-bind:data-timestamp="message.timestamp"
+												class="user-command">
+											</pre>
+										</template>
+
+										<template x-if="message.type === 'user-command-result-error'">
+											<pre class="source-code cm-s-default" 
+												x-text="message.content"
+												x-bind:data-timestamp="message.timestamp"
+												class="user-command-result-error">
+											</pre>
+										</template>
+									</div>
+								</div>
+							</template>
+
+						</div>
+
+						<form class="console-pane console-form" x-on:submit.prevent="submitForm">
+							<div class="form-group">
+								<span class="icon icon-right-open command-prompt-icon"></span>
+								<input type="text" x-model="lua" class="form-control console-prompt"
+									placeholder="Type in here LUA expression" x-ref="prompt">
+							</div>
+						</form>
+					</div>
+				</div>
+
+				<div class="pane tab-settings" x-show="$store.window.tabSelected === TABS_SETTINGS" style="display: none;">
+					<form x-data="Settings()">
+						
+						<h2>Game paths</h2>
+
+						<hr />
+
+						<p>
+							This is where you configure the various paths used by the app. You only need to set the
+							path to the game(s) you'd like to run the console with.
+						</p>
+
+						<p>
+							This is also where you can select the game you'd like to interract with.
+						</p>
+
+						<hr />
+
+						<div class="form-group">
+							<label>Game Selected</label>
+							<select class="form-control" x-model="$store.settings.selectedGame">
+								<option value="troy">Troy</option>
+								<option value="warhammer2">Warhammer 2</option>
+							</select>
+						</div>
+
+						<div class="form-group">
+						  <label>TW: Troy Folder</label>
+						  <div class="input-group">
+							<input type="text" class="form-control" x-model.debounce="$store.settings.folders.troy" placeholder="This is the folder where you have Troy save games files created by the game">
+							<button class="active btn btn-default btn-show-dialog" @click.prevent="showOpenDialog('troy')">
+								<span class="icon icon-dot-3"></span>
+							</button>
+						  </div>
+						</div>
+						<div class="form-group">
+							<label>TW: Warhammer 2 Folder</label>
+							<div class="input-group">
+								<input type="text" class="form-control" x-model.debounce="$store.settings.folders.warhammer2" placeholder="This is the folder where you have Warhammer save games files created by the game">
+								<button class="active btn btn-default btn-show-dialog" @click.prevent="showOpenDialog('warhammer2')">
+									<span class="icon icon-dot-3"></span>
+								</button>
+							</div>
+						</div>
+					  </form>
+				</div>
+				
+				
+			</div> <!--pane group -->
+		</div> <!-- window content -->
+
+		<div class="error-msg" x-show="$store.window.error" style="display: none;">
+			<span x-text="$store.window.error"></span>
+		</div>
+
+		<footer class="toolbar toolbar-footer">
+			<h1 class="title" x-text="`${$store.window.tabSelected} (Game selected: ${$store.settings.selectedGame})`"></h1>
+		</footer>
+	</div>
+
+</body>
+
+</html>

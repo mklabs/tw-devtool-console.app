@@ -1,0 +1,43 @@
+* {
+    /* user-select: text; */
+    box-sizing: border-box;
+}
+
+.toolbar-header {
+	-webkit-app-region: drag
+}
+
+.window {
+	border-top: 1px solid #c2c0c2;
+}
+
+.window .toolbar-header .title {
+	padding: 10px 0;
+}
+
+.window .toolbar-footer .title {
+	padding: 10px 0;
+}
+
+.window .toolbar-footer .toolbar-actions {
+	margin-top: -32px;
+}
+
+.window .pane-mini {
+	width: 50px;
+}
+
+.window .sidebar .nav-group-item {
+	padding: 12px 15px;
+}
+
+.window .error-msg {
+    position: relative;
+    padding: .75rem 1.25rem;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+
+	color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+} 

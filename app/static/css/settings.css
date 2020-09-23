@@ -1,0 +1,15 @@
+.tab-settings {
+    padding: 0 60px;
+}
+
+.input-group {
+    display: flex;
+}
+
+.input-group > {
+    flex: 1;
+}
+
+.input-group .btn-show-dialog {
+    margin-left: 8px;
+}

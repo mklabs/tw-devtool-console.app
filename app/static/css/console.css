@@ -1,0 +1,204 @@
+
+.window .console-header {
+	background-image: linear-gradient(to bottom, #e8e6e8 0%, #dcdfe1 100%)
+}
+
+.window .console-header .toolbar-actions {
+	display: flex;
+}
+
+.window .console-header .toolbar-actions .btn-group {
+	padding: 5px 8px 0 8px;
+}
+
+.window .console-header .console-clear-button:hover .icon{
+    color: #bfbfbf;
+}
+
+.window .console-filter {
+    height: 19px;
+    padding: 4px 3px 3px 3px;
+    margin: 1px 3px;
+    background-color: white;
+    border: 1px solid transparent;
+	min-width: 35px;
+	flex-grow: 0.2;
+	flex-shrink: 1;
+}
+
+.window .console-pane-group {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+}
+
+.window .console-pane {
+    flex: 1;
+}
+
+.window .console-form.console-form {
+	flex: 0;
+}
+
+.window .console-form .form-group {
+	margin-bottom: 0;
+	position: relative;
+}
+
+.window .console-form .form-control {
+	border-left: none;
+	border-bottom: none;
+	padding-left: 24px;
+}
+
+.window .console-form .form-control:focus {
+	border-color: #ddd;
+	box-shadow: none;
+}
+
+
+.window .console-form {
+	margin: 0 22px 0 20px;
+}
+
+.window .command-prompt-icon {
+    position: absolute;
+    left: -12px;
+    top: 5px;
+    user-select: none;
+    color: #367cf1;
+    font-size: 12px;
+}
+
+.window .console-messages {
+	font-family: Consolas, Lucida Console, Courier New, monospace;
+	flex: 1 1;
+    overflow-y: auto;
+    word-wrap: break-word;
+    user-select: text;
+    transform: translateZ(0);
+    overflow-anchor: none;
+}
+
+.window .console-message-wrapper:first-of-type {
+    border-top-color: transparent;
+}
+
+.window .console-message-wrapper {
+    display: flex;
+    border-top: 1px solid var(--message-border-color);
+    border-bottom: 1px solid transparent;
+}
+
+.window .console-message, .window .console-user-command {
+    clear: right;
+    position: relative;
+    padding: 3px 22px 1px 0;
+    margin-left: 24px;
+    min-height: 17px;
+    flex: auto;
+    display: flex;
+}
+
+.window .console-message * {
+	flex: auto;
+	user-select: text;
+}
+
+.window .command-result-icon {
+    position: absolute;
+    left: -17px;
+    top: 4px;
+	user-select: none;
+	font-size: 12px;
+}
+
+.window .command-result-icon.icon-right-open {
+	color: #939393;
+}
+
+.window .command-result-icon.icon-left-open {
+	color: #bbb;
+}
+
+.window .console-form {
+	font-family: Consolas, Lucida Console, Courier New, monospace;
+}
+
+.window .CodeMirror.CodeMirror-wrap {
+	height: auto;
+}
+
+.window .console-messages pre {
+	font-family: inherit;
+	margin: 0;
+}
+
+.window .toolbar-input {
+	width: 120px;
+    height: 19px;
+    padding: 4px 3px 3px 3px;
+    margin: 1px 3px;
+    background-color: white;
+    border: 1px solid transparent;
+    min-width: 35px;
+    box-shadow: 0 0 0 1px #afaeae;
+}
+
+.window .toolbar-input.focused, .window .toolbar-input:not(.toolbar-input-empty) {
+	box-shadow: 0 0 0 1px #0e639c;
+}
+
+.window .toolbar-item {
+    position: relative;
+    display: flex;
+    /* background-color: transparent; */
+    flex: none;
+    align-items: center;
+    justify-content: flex-start;
+    height: 26px;
+    border: none;
+}
+
+.window .text-prompt-root {
+	display: flex;
+	align-items: center;
+	flex: 1;
+}
+
+.window .text-prompt {
+    cursor: text;
+    overflow-x: visible;
+}
+
+.window .text-prompt:focus {
+    outline-width: 0;
+}
+
+.window .toolbar-input-prompt {
+    flex: 1;
+    overflow: hidden;
+    white-space: nowrap;
+    cursor: auto;
+}
+
+.window .toolbar-input-clear-button {
+    opacity: 70%;
+    flex-basis: 13px;
+    flex-shrink: 0;
+    height: 18px;
+}
+
+.window .toolbar-input-clear-button:hover {
+    opacity: 99%;
+}
+
+.window .toolbar-input-empty .toolbar-input-clear-button {
+    display: none;
+}
+
+[contenteditable=true]:empty:before {
+	content: attr(placeholder);
+	pointer-events: none;
+	display: block; /* For Firefox */
+}

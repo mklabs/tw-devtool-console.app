@@ -1,0 +1,85 @@
+{
+	"name": "tw-devtool-console.app",
+	"productName": "TW Modding Devtool Console",
+	"version": "1.0.0",
+	"description": "Modding Devtool Console for Total War games",
+	"license": "MIT",
+	"repository": "mklabs/tw-devtool-console.app",
+	"main": "./app/index.js",
+	"author": {
+		"name": "Mickael Daniel",
+		"email": "daniel.mickael@gmail.com",
+		"url": "https://mklabs.github.io/"
+	},
+	"scripts": {
+		"postinstall": "electron-builder install-app-deps",
+		"lint": "xo",
+		"test": "npm run lint",
+		"start": "electron .",
+		"pack": "electron-builder --dir",
+		"dist": "electron-builder --windows",
+		"release": "np"
+	},
+	"dependencies": {
+		"@ryangjchandler/spruce": "^1.1.1",
+		"alpinejs": "^2.6.0",
+		"chokidar": "^3.4.2",
+		"date-fns": "^2.16.0",
+		"debug": "^4.2.0",
+		"electron-context-menu": "^0.15.0",
+		"electron-debug": "^3.0.0",
+		"electron-store": "^5.1.0",
+		"electron-unhandled": "^3.0.0",
+		"electron-updater": "^4.0.6",
+		"electron-util": "^0.13.0",
+		"glob": "^7.1.6",
+		"mkdirp": "^1.0.4",
+		"rimraf": "^3.0.2"
+	},
+	"devDependencies": {
+		"electron": "^7.1.1",
+		"electron-builder": "^21.2.0",
+		"electron-reload": "^1.5.0",
+		"np": "^6.5.0",
+		"xo": "^0.33.0"
+	},
+	"xo": {
+		"envs": [
+			"node",
+			"browser"
+		]
+	},
+	"np": {
+		"publish": false,
+		"releaseDraft": false
+	},
+	"build": {
+		"appId": "com.mklabs.TwToolDesktop",
+		"mac": {
+			"category": "public.app-category.developer-tools",
+			"darkModeSupport": true
+		},
+		"dmg": {
+			"iconSize": 160,
+			"contents": [
+				{
+					"x": 180,
+					"y": 170
+				},
+				{
+					"x": 480,
+					"y": 170,
+					"type": "link",
+					"path": "/Applications"
+				}
+			]
+		},
+		"linux": {
+			"target": [
+				"AppImage",
+				"deb"
+			],
+			"category": "Devtool;Gaming"
+		}
+	}
+}
