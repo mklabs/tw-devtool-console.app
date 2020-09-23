@@ -1,7 +1,7 @@
 {
 	"name": "tw-devtool-console.app",
 	"productName": "TW Modding Devtool Console",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Modding Devtool Console for Total War games",
 	"license": "MIT",
 	"repository": "mklabs/tw-devtool-console.app",
@@ -45,16 +45,27 @@
 	},
 	"xo": {
 		"space": true,
-		"globals": ["debug"],
-		"ignores": ["app/mod", "app/static"],
+		"globals": [
+			"debug"
+		],
+		"ignores": [
+			"app/mod",
+			"app/static"
+		],
 		"envs": [
 			"node",
 			"browser"
 		],
 		"rules": {
 			"import/no-unassigned-import": 0,
-			"object-curly-spacing": [ "error", "always"],
-			"func-names": ["error", "as-needed"]
+			"object-curly-spacing": [
+				"error",
+				"always"
+			],
+			"func-names": [
+				"error",
+				"as-needed"
+			]
 		}
 	},
 	"np": {
