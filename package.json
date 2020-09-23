@@ -1,7 +1,7 @@
 {
 	"name": "tw-devtool-console.app",
 	"productName": "TW Modding Devtool Console",
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"description": "Modding Devtool Console for Total War games",
 	"license": "MIT",
 	"repository": "mklabs/tw-devtool-console.app",
