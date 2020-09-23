@@ -44,10 +44,18 @@
 		"xo": "^0.33.0"
 	},
 	"xo": {
+		"space": true,
+		"globals": ["debug"],
+		"ignores": ["app/mod", "app/static"],
 		"envs": [
 			"node",
 			"browser"
-		]
+		],
+		"rules": {
+			"import/no-unassigned-import": 0,
+			"object-curly-spacing": [ "error", "always"],
+			"func-names": ["error", "as-needed"]
+		}
 	},
 	"np": {
 		"publish": false,

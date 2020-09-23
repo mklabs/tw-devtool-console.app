@@ -1,28 +1,25 @@
-const fs = require("fs");
-const path = require("path");
-const mkdirp = require("mkdirp");
-const { remote } = require("electron");
-const Spruce = require("../store");
+const { remote } = require('electron');
+const Spruce = require('../store');
 const { dialog } = remote;
 
 module.exports = function Settings() {
-    return {
-        async showOpenDialog(folderType) {
-            const { canceled, filePaths } = await dialog.showOpenDialog({ 
-                title: "Select folder",
-                properties: ["openDirectory"]
-            });
+  return {
+    async showOpenDialog(folderType) {
+      const { canceled, filePaths } = await dialog.showOpenDialog({
+        title: 'Select folder',
+        properties: ['openDirectory']
+      });
 
-            if (canceled) {
-                return;
-            }
+      if (canceled) {
+        return;
+      }
 
-            const directory = filePaths[0];
-            if (!directory) {
-                return;
-            }
+      const directory = filePaths[0];
+      if (!directory) {
+        return;
+      }
 
-            Spruce.store("settings").folders[folderType] = directory;
-        }
-    };
-}
+      Spruce.store('settings').folders[folderType] = directory;
+    }
+  };
+};

@@ -1,29 +1,25 @@
-const path = require("path");
-const Store = require("electron-store");
-const { app, remote } = require("electron");
-const appData = (app || remote.app).getPath('appData');
-const userData = (app || remote.app).getPath('userData');
+const Store = require('electron-store');
 
 const folders = {
-	troy: '',
-	warhammer2: ''
+  troy: '',
+  warhammer2: ''
 };
 
 module.exports = new Store({
-	defaults: {
-		window: {
-			title: '',
-			tabSelected: 'Console',
-			error: ''
-		},
+  defaults: {
+    window: {
+      title: '',
+      tabSelected: 'Console',
+      error: ''
+    },
 
-		console: {
-			history: []
-		},
+    console: {
+      history: []
+    },
 
-		settings: {
-			selectedGame: 'troy',
-			folders
-		}
-	}
+    settings: {
+      selectedGame: 'troy',
+      folders
+    }
+  }
 });
