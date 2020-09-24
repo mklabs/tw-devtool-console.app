@@ -21,7 +21,7 @@
 
 This application is basically an enhanced version of the [Modding DevTool Console mod for Warhammer 2](https://steamcommunity.com/workshop/filedetails/?id=1574469690)
 
-- Better editing with syntax highligting and proper multiline support (Press Enter to execute, Shift+Enter to insert a new line)
+- Better editing with syntax highlighting and proper multiline support (Press Enter to execute, Shift+Enter to insert a new line)
 - History of commands (navigate through them with Up / Down arrow while on the command prompt)
 - `_0` special variable is a reference to the last UIComponent clicked within the game
 - Use `print()` to debug variables
